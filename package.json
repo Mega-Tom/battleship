@@ -1,0 +1,22 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Live online battleship",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mega-Tom/battleship.git"
+  },
+  "author": "Thomas Peck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mega-Tom/battleship/issues"
+  },
+  "homepage": "https://github.com/Mega-Tom/battleship#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
