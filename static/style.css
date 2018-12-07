@@ -1,0 +1,11 @@
+body {
+    background: darkgray;
+    
+}
+
+div#main {
+    margen:10px;
+    boardr: 4px outset gray;
+    background: gray;
+    
+}
