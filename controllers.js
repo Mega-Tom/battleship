@@ -1,11 +1,14 @@
 const modles = require("./modles.js")
 
-async function postLogin(req, res){
+function postLogin(req, res){
     console.log("postLogin");
     var username = req.body.username;
     var password = req.body.password;
-    modles.checkPassword(username, password).then(function(goodPassword) {
-        if(goodPassword){
+    modles.checkPassword(username, password, function(err, goodPassword) {
+        if(err){
+            console.log(err);
+            res.json({correct: false});
+        }else if(goodPassword){
             res.json({correct: true});
         }else{
             res.json({correct: false});
