@@ -14,3 +14,5 @@ app.set('view engine', 'ejs')
 app.post('/login', controllers.postLogin);
 
 app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
+
+console.log(process.env);
