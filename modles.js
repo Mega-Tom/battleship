@@ -9,8 +9,10 @@ function checkPassword(username, password, callback){
     var data = pool.query('SELECT password FROM player WHERE username = $1', [username], function(err, data){
         if(err)
             callback(err, {});
-        else
+        else if(data.length == 1)
             bcrypt.compare(password, data.rows[0].password, callback);
+        else
+            callback(null, false);
     });
 }
 
