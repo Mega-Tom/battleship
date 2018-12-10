@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 
 function checkPassword(username, password, callback){
-    var data = pool.query('SELECT password FROM users WHERE username = $1', [username], function(err, data){
+    var data = pool.query('SELECT password FROM player WHERE username = $1', [username], function(err, data){
         if(err)
             callback(err, {});
         else
@@ -15,7 +15,7 @@ function checkPassword(username, password, callback){
 }
 
 function addUser(username, password, callback){
-    pool.query('SELECT id FROM users WHERE username = $1', [username], function(err, data){
+    pool.query('SELECT id FROM player WHERE username = $1', [username], function(err, data){
         if(err){
             callback(err, {});
         }
@@ -23,7 +23,7 @@ function addUser(username, password, callback){
             callback("User in database", {});
         }
         bcrypt.hash(password, 10, function(hash){
-            pool.query('INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id', [username, hash], function(err, data){
+            pool.query('INSERT INTO player (username, password) VALUES ($1, $2) RETURNING id', [username, hash], function(err, data){
                 if(err)
                     callback(err, 0)
                 else if(data.rows[0])
