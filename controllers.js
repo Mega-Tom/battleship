@@ -4,7 +4,6 @@ function postLogin(req, res){
     console.log("postLogin");
     var username = req.body.username;
     var password = req.body.password;
-    console.log("--------------------(body)-----------------");
     console.log(req.body);
     modles.checkPassword(username, password, function(err, goodPassword) {
         try{

@@ -1,5 +1,8 @@
 const express = require("express")
 const url = require("url");
+const session = require("express-session")
+const bodyParser = require('body-parser')
+
 const PORT = process.env.PORT || 4999;
 
 const controllers = require("./controllers.js")
@@ -13,11 +16,10 @@ app.use(session({
     resave: false,
     saveUninitalized: true
 }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("static"))
 app.set("views", "views")
 app.set('view engine', 'ejs')
 app.post('/login', controllers.postLogin);
 
 app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
-
-console.log(process.env);
