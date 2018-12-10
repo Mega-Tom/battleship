@@ -4,6 +4,7 @@ function postLogin(req, res){
     console.log("postLogin");
     var username = req.body.username;
     var password = req.body.password;
+    console.log("--------------------(body)-----------------");
     console.log(req.body);
     modles.checkPassword(username, password, function(err, goodPassword) {
         try{
@@ -27,7 +28,14 @@ function postSignup(req, res){
     var username = req.body.username;
     var password = req.body.password;
     
-    
+    modles.addUser(username, password, function(err, id){
+        if(err){
+            res.status(500).json({sucsess: false});
+        }else{
+            req.session.user = id;
+            res.json({sucsess: true});
+        }
+    });
 }
 
 module.exports = {
