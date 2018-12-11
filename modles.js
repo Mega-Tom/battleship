@@ -24,7 +24,9 @@ function addUser(username, password, callback){
         if(data.rows.length){
             callback("User in database", {});
         }
-        bcrypt.hash(password, 10, function(hash){
+        bcrypt.hash(password, 10, function(err, hash){
+            if(err)
+                return callback(err, 0);
             pool.query('INSERT INTO player (username, password) VALUES ($1, $2) RETURNING id', [username, hash], function(err, data){
                 if(err)
                     callback(err, 0)
