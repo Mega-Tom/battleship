@@ -21,5 +21,6 @@ app.use(express.static("static"))
 app.set("views", "views")
 app.set('view engine', 'ejs')
 app.post('/login', controllers.postLogin);
+app.post('/signup', controllers.postSignup);
 
 app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
