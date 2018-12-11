@@ -10,7 +10,7 @@ function checkPassword(username, password, callback){
         console.log(data);
         if(err)
             callback(err, {});
-        else if(data.length == 1)
+        else if(data.rows.length == 1)
             bcrypt.compare(password, data.rows[0].password, callback);
         else
             callback(null, false);
