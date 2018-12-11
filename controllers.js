@@ -26,6 +26,11 @@ function postSignup(req, res){
     console.log("postSignup");
     var username = req.body.username;
     var password = req.body.password;
+    var password2 = req.body.password2;
+    
+    if(password != password2){
+        res.json({});
+    }
     
     modles.addUser(username, password, function(err, id){
         if(err){
