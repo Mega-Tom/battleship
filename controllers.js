@@ -6,17 +6,12 @@ function postLogin(req, res){
     var password = req.body.password;
     console.log(req.body);
     modles.checkPassword(username, password, function(err, goodPassword) {
-        try{
-            if(err){
-                console.log(err);
-                res.json({correct: false});
-            }else if(goodPassword){
-                res.json({correct: true});
-            }else{
-                res.json({correct: false});
-            }
-        }catch(x){
-            console.log(x);
+        if(err){
+            console.log(err);
+            res.json({correct: false});
+        }else if(goodPassword){
+            res.json({correct: true});
+        }else{
             res.json({correct: false});
         }
     });
@@ -30,6 +25,7 @@ function postSignup(req, res){
     
     if(password != password2){
         res.json({success: false});
+        return;
     }
     
     modles.addUser(username, password, function(err, id){
