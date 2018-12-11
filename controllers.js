@@ -29,15 +29,15 @@ function postSignup(req, res){
     var password2= req.body.password2;
     
     if(password != password2){
-        res.json({sucsess: false});
+        res.json({success: false});
     }
     
     modles.addUser(username, password, function(err, id){
         if(err){
-            res.status(500).json({sucsess: false, error: err});
+            res.status(500).json({success: false, error: err});
         }else{
             req.session.user = id;
-            res.json({sucsess: true});
+            res.json({success: true});
         }
     });
 }
