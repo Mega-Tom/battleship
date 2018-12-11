@@ -38,5 +38,6 @@ function addUser(username, password, callback){
 }
 
 module.exports = {
-    checkPassword: checkPassword
+    checkPassword: checkPassword,
+    addUser: addUser
 }
