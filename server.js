@@ -22,5 +22,7 @@ app.set("views", "views")
 app.set('view engine', 'ejs')
 app.post('/login', controllers.postLogin);
 app.post('/signup', controllers.postSignup);
+app.get("/login", controllers.getLogin);
+app.get("/signup", controllers.getSignup);
 
 app.listen(PORT, function(){console.log("Listining on port: " + PORT)})

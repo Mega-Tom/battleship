@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Battleship Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<h1>Battleship!</h1>
+
+<% if(retry) { %>
+    <h3 class="error"> Username or password is incorrect </h3>
+<% } %>
+
+<form action="/login" method="post">
+    Username: <input type="text" name="username"><br>
+    Password: <input type="password" name="password"><br>
+    <input type="submit" value="login">
+</form>
+
+
+</body>
+</html>

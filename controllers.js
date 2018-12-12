@@ -5,14 +5,15 @@ function postLogin(req, res){
     var username = req.body.username;
     var password = req.body.password;
     console.log(req.body);
-    modles.checkPassword(username, password, function(err, goodPassword) {
+    modles.checkPassword(username, password, function(err, data) {
         if(err){
             console.log(err);
-            res.json({correct: false});
-        }else if(goodPassword){
-            res.json({correct: true});
+            res.render("error", {error: "Error logging in"});
+        }else if(data.correct){
+            req.session.user = data.id;
+            res.redirect("/");
         }else{
-            res.json({correct: false});
+            res.render("/login", {retry: true});
         }
     });
     
@@ -38,7 +39,16 @@ function postSignup(req, res){
     });
 }
 
+function getLogin(req, res){
+    res.render("login", {});
+}
+function getSingup(req, res){
+    res.render("signup", {});
+}
+
 module.exports = {
     postLogin: postLogin,
-    postSignup: postSignup
+    postSignup: postSignup,
+    getLogin: getLogin,
+    getSignup: getSignup
 }

@@ -6,14 +6,16 @@ const bcrypt = require('bcrypt');
 
 
 function checkPassword(username, password, callback){
-    pool.query('SELECT password FROM player WHERE username = $1', [username], function(err, data){
+    pool.query('SELECT password, id FROM player WHERE username = $1', [username], function(err, data){
         console.log(data);
         if(err)
-            callback(err, {});
+            callback(err, {correct: false});
         else if(data.rows.length == 1)
-            bcrypt.compare(password, data.rows[0].password, callback);
+            bcrypt.compare(password, data.rows[0].password, function(err, match){
+                callback(err, {correct: match, id: data.rows[0].id})
+            });
         else
-            callback(null, false);
+            callback(null, {correct: false, error: "user not found"});
     });
 }
 

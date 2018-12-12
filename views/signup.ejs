@@ -6,6 +6,10 @@
 <body>
 <h1>Battleship!</h1>
 
+<% if(retry) { %>
+    <h3 class="error"> Username not avalable </h3>
+<% } %>
+
 <form action="/signup" method="post">
     Username: <input type="text" name="username"><br>
     Password: <input type="password" name="password"><br>
