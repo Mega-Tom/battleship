@@ -40,10 +40,10 @@ function postSignup(req, res){
 }
 
 function getLogin(req, res){
-    res.render("login", {});
+    res.render("login", {retry: false});
 }
 function getSignup(req, res){
-    res.render("signup", {});
+    res.render("signup", {retry: false});
 }
 
 module.exports = {
