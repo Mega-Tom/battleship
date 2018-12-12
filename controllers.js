@@ -42,7 +42,7 @@ function postSignup(req, res){
 function getLogin(req, res){
     res.render("login", {});
 }
-function getSingup(req, res){
+function getSignup(req, res){
     res.render("signup", {});
 }
 
