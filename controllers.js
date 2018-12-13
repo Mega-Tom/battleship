@@ -53,7 +53,7 @@ function getRoot(req, res){
         });
         
     }else{
-        rres.render("login", {retry: false});
+        res.render("login", {retry: false});
     }
 }
 
