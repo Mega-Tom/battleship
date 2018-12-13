@@ -38,3 +38,5 @@ wsServer = new WebSocketServer({
 });
 
 wsServer.on('connection', ws_server.handleConnection);
+
+wsServer.on("request", function(x){console.log("request")})
