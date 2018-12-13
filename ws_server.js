@@ -6,7 +6,7 @@ function Player(ws, name){
     this.state = "waiting";
     this.opponent = null;
 }
-Player.prototype.setOpponent(opp){
+Player.prototype.setOpponent = function(opp){
     this.opponent = opp;
     opp.opponent = this;
     this.state = "setup";
@@ -21,7 +21,7 @@ Player.prototype.setOpponent(opp){
         opponent: this.name
     }));
 }
-Player.prototype.startGame(){
+Player.prototype.startGame = function(){
     this.opponent.state = this.state = "playing";
     this.ws.send(JSON.stringify({action:"start"}));
     this.opponent.ws.send(JSON.stringify({action:"start"}));
@@ -33,7 +33,7 @@ Player.prototype.startGame(){
         polayer.opponent.update();
     }, 5000)
 }
-Player.prototype.update(){
+Player.prototype.update = function(){
     this.ws.send(JSON.stringify({
         action: "move",
         yourShips: this.board.grid,
