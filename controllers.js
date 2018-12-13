@@ -1,10 +1,8 @@
 const models = require("./models.js")
 
 function postLogin(req, res){
-    console.log("postLogin");
     var username = req.body.username;
     var password = req.body.password;
-    console.log(req.body);
     models.checkPassword(username, password, function(err, data) {
         if(err){
             console.log(err);
