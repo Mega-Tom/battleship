@@ -37,7 +37,7 @@ wsServer = new WebSocketServer({
     httpServer: server
 });
 
-wsServer.on('connection', ws_server.handleConnection);
+wsServer.on('connect', ws_server.handleConnection);
 
 wsServer.on("request", function(x){
 	console.log("we have a ws request...");
