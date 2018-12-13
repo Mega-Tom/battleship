@@ -45,6 +45,7 @@ Player.prototype.update = function(){
 var waitingPlayer = null;
 
 function handleConnection(ws) {
+    console.log("handleConnection called");
     var player;
     var opponent;
 
