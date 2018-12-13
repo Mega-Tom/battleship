@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(session({
     secret: "null",
     resave: false,
-    saveUninitalized: true
+    saveUninitialized: true
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("static"))
@@ -31,12 +31,10 @@ var server = app.listen(PORT, function(){console.log("Listining on port: " + POR
 
 
 const WebSocketServer = require('websocket').server;
+const ws_server = require("./ws_server.js");
 
 wsServer = new WebSocketServer({
-    httpServer: server,
-    autoAcceptConnections: false
+    httpServer: server
 });
 
-wsServer.on('request', function(request) {
-    console.log(request);
-});
+wsServer.on('connection', ws_server.handleConnection);

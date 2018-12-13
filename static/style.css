@@ -9,3 +9,7 @@ div#main {
     background: gray;
     
 }
+
+.error {
+	color: red;
+}

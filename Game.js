@@ -55,3 +55,8 @@ Board.prototype.canAddShip = function (pos, len, vert) {
     }
     return true;
 }
+
+module.exports = {
+    Coordinate: Coordinate,
+    Board: Board
+}
