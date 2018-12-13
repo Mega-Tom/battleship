@@ -49,7 +49,7 @@ function displayBoard(board){
 
 $(function(){
     $("#findgame").click(function(){
-        var ws = new WebSocket("/connect");
+        var ws = new WebSocket("wss://" + window.location.host + window.location.pathname + "/connect");
         var oponent = null;
         var pBoard = null;
         var sBoard = null;
