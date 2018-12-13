@@ -64,6 +64,7 @@ function handleConnection(ws) {
     })
 
     ws.on("message", function(data){
+        console.log("we got a message with: " + data);
             data = JSON.parse(data);
         if(opponent){
             if(player.state == "setup"){
