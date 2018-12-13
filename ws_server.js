@@ -51,6 +51,7 @@ function handleConnection(ws) {
     player = new Player(ws, name);
     if(waitingPlayer)
     {
+        console.log("connecting " + name + " to " + waitingPlayer.name);
         player.setOpponent(waitingPlayer);
         waitingPlayer = null;
     }else{
@@ -86,6 +87,7 @@ function handleConnection(ws) {
             }
         }
     })
+    console.log("connection setup");
 }
 
 module.exports = {
