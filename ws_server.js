@@ -66,8 +66,7 @@ function handleConnection(ws) {
     })
 
     ws.on("message", function(data){
-        console.log("we got a message with: " + data);
-            data = JSON.parse(data);
+        console.log("we got a message with: " + JSON.stringify(data));
         if(opponent){
             if(player.state == "setup"){
                 player.board = new Game.Board();
