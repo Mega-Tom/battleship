@@ -11,7 +11,7 @@ function postLogin(req, res){
             req.session.user = data.id;
             res.redirect("/");
         }else{
-            res.render("/login", {retry: true});
+            res.render("login", {retry: true});
         }
     });
     
