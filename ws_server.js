@@ -49,7 +49,7 @@ function handleConnection(ws) {
     var player;
     var opponent;
 
-    player = new Player(ws, name);
+    player = new Player(ws, "TEST");
     if(waitingPlayer)
     {
         console.log("connecting " + name + " to " + waitingPlayer.name);
