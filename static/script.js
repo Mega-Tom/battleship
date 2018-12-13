@@ -11,7 +11,7 @@ Coordinate.prototype.valueOf = function(){
 }
 
 function ShipBoard(){
-	this.grid = Array.from(Array(10), () => Array.from(Array(10), () => ({ship: false, hit: false})))
+	this.grid = Array.from(Array(GRID_SIZE), () => Array.from(Array(GRID_SIZE), () => ({ship: false, hit: false})))
 	ships = [];
 } 
 ShipBoard.prototype.addShip = function (pos, len, vert) {
@@ -51,13 +51,13 @@ $(function(){
     $("#findgame").click(function(){
         var ws = new WebSocket("/connect");
         var oponent = null;
-        var board1 = null;
-        var board2 = null;
+        var pBoard = null;
+        var sBoard = null;
         ws.onmessage = function(event){
         	var data = JSON.parse(event.data)
         	if(data.action === "connect"){
         		oponent = data.oponent;
-        		board = new Board();
+        		sBoard = new ShipBoard();
         		displayBoard(board);
 
         	}

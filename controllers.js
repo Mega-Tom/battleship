@@ -1,11 +1,11 @@
-const modles = require("./modles.js")
+const models = require("./models.js")
 
 function postLogin(req, res){
     console.log("postLogin");
     var username = req.body.username;
     var password = req.body.password;
     console.log(req.body);
-    modles.checkPassword(username, password, function(err, data) {
+    models.checkPassword(username, password, function(err, data) {
         if(err){
             console.log(err);
             res.render("error", {error: "Error logging in"});
@@ -29,12 +29,12 @@ function postSignup(req, res){
         return;
     }
     
-    modles.addUser(username, password, function(err, id){
+    models.addUser(username, password, function(err, id){
         if(err){
-            res.status(500).json({success: false, error: err});
+            res.status(500).res.render("signup", {retry: true});
         }else{
             req.session.user = id;
-            res.json({success: true});
+            res.redirect("/");
         }
     });
 }
@@ -46,9 +46,21 @@ function getSignup(req, res){
     res.render("signup", {retry: false});
 }
 
+function getRoot(req, res){
+    if(req.session.user){
+        models.getUserInfo(req.session.user, function(err, data){
+            res.render("main", {name: data.username});
+        });
+        
+    }else{
+        rres.render("login", {retry: false});
+    }
+}
+
 module.exports = {
     postLogin: postLogin,
     postSignup: postSignup,
     getLogin: getLogin,
-    getSignup: getSignup
+    getSignup: getSignup,
+    getRoot: getRoot
 }

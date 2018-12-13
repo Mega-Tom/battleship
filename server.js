@@ -24,5 +24,6 @@ app.post('/login', controllers.postLogin);
 app.post('/signup', controllers.postSignup);
 app.get("/login", controllers.getLogin);
 app.get("/signup", controllers.getSignup);
+app.get("/", controllers.getRoot);
 
 app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
