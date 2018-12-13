@@ -26,4 +26,17 @@ app.get("/login", controllers.getLogin);
 app.get("/signup", controllers.getSignup);
 app.get("/", controllers.getRoot);
 
-app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
+var server = app.listen(PORT, function(){console.log("Listining on port: " + PORT)})
+
+
+
+const WebSocketServer = require('websocket').server;
+
+wsServer = new WebSocketServer({
+    httpServer: server,
+    autoAcceptConnections: false
+});
+
+wsServer.on('request', function(request) {
+    console.log(request);
+});
