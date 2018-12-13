@@ -61,8 +61,21 @@ $(function(){
         		displayBoard(board);
 
         	}
-        	else if(data.action === "start"){}
+        	else if(data.action === "start"){
+        		var table = $("<table>").class("board").appendTo($("#game"));
+        		for(int i = 0; i < 10; i++){
+        			var row = $("<tr>");
+        			table.append(row);
+        			for(var j = 0; j < 10; j++){
+        				row.append($("<td>").id("cell"+i + "-" + j));
+        			}
+        		}
+        		
+        			
+        		
+        	}
         	else if(data.action === "move"){}
         }
     })
 })
+
