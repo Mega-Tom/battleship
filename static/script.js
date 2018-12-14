@@ -63,7 +63,7 @@ $(function(){
         	}
         	else if(data.action === "start"){
         		var table = $("<table>").class("board").appendTo($("#game"));
-        		for(int i = 0; i < 10; i++){
+        		for(var i = 0; i < 10; i++){
         			var row = $("<tr>");
         			table.append(row);
         			for(var j = 0; j < 10; j++){
