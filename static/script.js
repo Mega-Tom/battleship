@@ -38,13 +38,24 @@ ShipBoard.prototype.canAddShip = function (pos, len, vert) {
     }
     return true;
 }
+ShipBoard.prototype.__defineGetter__("html", function(){
+	var html = "<table class='board'><tbody>"
+	for(var i = 0; i < 10; i++){ 
+		html += "<tr>";
+		for(var j = 0; j < 10; j++){
+			html += "<td>"+ (this.grid[i][j].ship ? "#" : "~") +"</td>";
+		}
+		html += "</tr>";
+	}
+	var html = "</tbody></table>"
+})
 
 function PegBoard(){
 	this.grid = Array.from(Array(10), () => new Array(10, false));
 }
 
 function displayBoard(board){
-	$("#board").innerHtml(board.html);
+	$("#game").html(board.html);
 }
 
 $(function(){
