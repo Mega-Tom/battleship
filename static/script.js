@@ -67,11 +67,11 @@ $(function(){
         			var row = $("<tr>");
         			table.append(row);
         			for(var j = 0; j < 10; j++){
-        				row.append($("<td>").id("cell"+i + "-" + j));
+        				row.append($("<td>").id("cell" + i + "-" + j));
         			}
         		}
         		
-        			
+        		
         		
         	}
         	else if(data.action === "move"){}

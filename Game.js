@@ -56,6 +56,19 @@ Board.prototype.canAddShip = function (pos, len, vert) {
     return true;
 }
 
+Board.prototype.hit = function (pos) {
+    this.shots[pos.y][pos.x] = this.grid[pos.y][pos.x] ? "hit" : "miss";
+}
+
+Board.prototype.isAllClear = function() {
+   for(var i = 0; i < GRID_SIZE; i++) {
+        for(var j = 0; j < GRID_SIZE; j++) {
+            if(this.grid[i][j] && !this.shots[i][j]) return false;
+        }
+    }
+    return true;
+}
+
 module.exports = {
     Coordinate: Coordinate,
     Board: Board
