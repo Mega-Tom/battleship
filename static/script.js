@@ -38,7 +38,7 @@ ShipBoard.prototype.canAddShip = function (pos, len, vert) {
     }
     return true;
 }
-ShipBoard.prototype.__defineGetter__("html", function(){
+ShipBoard.prototype.html = function(){
 	var html = "<table class='board'><tbody>"
 	for(var i = 0; i < 10; i++){ 
 		html += "<tr>";
@@ -47,8 +47,9 @@ ShipBoard.prototype.__defineGetter__("html", function(){
 		}
 		html += "</tr>";
 	}
-	var html = "</tbody></table>"
-})
+	html += "</tbody></table>"
+	return html;
+}
 
 function PegBoard(){
 	this.grid = Array.from(Array(10), () => new Array(10, false));
