@@ -58,7 +58,7 @@ $(function(){
         	if(data.action === "connect"){
         		oponent = data.oponent;
         		sBoard = new ShipBoard();
-        		displayBoard(board);
+        		displayBoard(sBoard);
 
         	}
         	else if(data.action === "start"){

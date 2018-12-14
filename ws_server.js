@@ -70,6 +70,7 @@ function handleConnection(ws) {
         console.log("we got a message with: " + msg.utf8Data);
         data = JSON.parse(msg.utf8Data);
         if(opponent){
+            console.log("player.state: " + player.state);
             if(player.state == "setup"){
                 player.board = new Game.Board();
                 // TODO: varify valid ships
