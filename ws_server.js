@@ -61,7 +61,7 @@ function handleConnection(ws) {
     }
 
     ws.on("close", function(){
-        if(waitingPlayer.ws == ws){
+        if(waitingPlayer && waitingPlayer.ws == ws){
             waitingPlayer = null;
         }
     })
