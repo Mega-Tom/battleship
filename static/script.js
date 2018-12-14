@@ -43,7 +43,9 @@ ShipBoard.prototype.html = function(){
 	for(var i = 0; i < 10; i++){ 
 		html += "<tr>";
 		for(var j = 0; j < 10; j++){
-			html += "<td>"+ (this.grid[i][j].ship ? "#" : "~") +"</td>";
+			html += this.grid[i][j].hit ? "<td class='hit'>" : "<td>";
+			html += this.grid[i][j].ship ? "#" : "~";
+			html += "</td>";
 		}
 		html += "</tr>";
 	}
@@ -56,7 +58,7 @@ function PegBoard(){
 }
 
 function displayBoard(board){
-	$("#game").html(board.html);
+	$("#game").html(board.html());
 }
 
 $(function(){
