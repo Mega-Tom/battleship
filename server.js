@@ -12,12 +12,11 @@ let app = express();
 app.use(express.urlencoded({extended: true}))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
-var sessionParser = session({
+app.use(session({
     secret: "null",
     resave: false,
     saveUninitialized: true
-})
-app.use(sessionParser)
+}))
 app.use(express.static("static"))
 app.set("views", "views")
 app.set('view engine', 'ejs')
