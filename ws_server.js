@@ -104,8 +104,8 @@ function handleConnection(ws) {
 function handleRequest(req){
     var id;
     console.log("we have a ws request...");
-    req.on("requestAccepted", (ws)=>onsole.log("requestAccepted: " + id))
-    req.on("requestRejected", (er)=>onsole.log("requestRejected: " + er))
+    req.on("requestAccepted", (ws)=>console.log("requestAccepted: " + id))
+    req.on("requestRejected", (er)=>console.log("requestRejected: " + er))
     sessionParser(req.httpRequest, {}, function(){
         if(req.httpRequest.session.user){
             id = req.httpRequest.session.user;
