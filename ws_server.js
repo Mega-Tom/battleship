@@ -79,18 +79,19 @@ function handleConnection(ws) {
         var data = JSON.parse(msg.utf8Data);
         if(player.opponent){
             console.log("player.state: " + player.state);
-            if(player.state == "setup"){
+            if(player.state === "setup"){
                 player.board = new Game.Board();
                 // TODO: varify valid ships
                 try{
-                    data.ships.foreach((ship)=>{
+                    for(var i = 0; i < data.ships.length; i++){
+                        var ship = data.ships[i];
                         player.board.addShip(ship.pos, ship.length, ship.vert, {})
-                    });
+                    }
                 }catch(x){
                     ws.send(JSON.stringify({action:"error", msg:"invalid ship placement"}));
                     return;
                 }
-                if(opponent.board){
+                if(player.opponent.board){
                     player.startGame();
                 }
             }else if(player.state == "playing"){
