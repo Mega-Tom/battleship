@@ -130,7 +130,7 @@ $(function(){
         		
 
 		        pBoard.table.find("td").click(function(){
-		        	ws.send($(this).data());
+		        	ws.send(JSON.stringify($(this).data()));
 		        });
         	}
         	else if(data.action === "move"){
