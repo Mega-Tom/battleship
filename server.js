@@ -10,13 +10,14 @@ const controllers = require("./controllers.js")
 let app = express();
 
 app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(session({
+var sessionParser = session({
     secret: "null",
     resave: false,
     saveUninitialized: true
-}))
-app.use(bodyParser.urlencoded({ extended: true }))
+})
+app.use(sessionParser)
 app.use(express.static("static"))
 app.set("views", "views")
 app.set('view engine', 'ejs')
@@ -33,13 +34,10 @@ var server = app.listen(PORT, function(){console.log("Listining on port: " + POR
 const WebSocketServer = require('websocket').server;
 const ws_server = require("./ws_server.js");
 
-wsServer = new WebSocketServer({
+wss = new WebSocketServer({
     httpServer: server
 });
 
-wsServer.on('connect', ws_server.handleConnection);
+wss.on('connect', ws_server.handleConnection);
 
-wsServer.on("request", function(x){
-	console.log("we have a ws request...");
-	x.accept(null, x.origin);
-})
+wss.on("request", ws_server.handleRequest)

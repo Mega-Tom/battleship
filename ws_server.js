@@ -1,4 +1,10 @@
 const Game = require("./Game.js")
+const session = require("express-session");
+var sessionParser = session({
+    secret: "null",
+    resave: false,
+    saveUninitialized: true
+});
 
 function Player(ws, name){
     this.ws = ws;
@@ -31,6 +37,7 @@ Player.prototype.startGame = function(){
         if(player.shot)
             player.opponent.board.hit(player.shot);
         player.shot = player.opponent.shot = null;
+
         player.update();
         polayer.opponent.update();
     }, 5000)
@@ -94,6 +101,20 @@ function handleConnection(ws) {
     console.log("connection setup");
 }
 
+function handleRequest(req){
+    var id;
+    console.log("we have a ws request...");
+    req.on("requestAccepted", (ws)=>onsole.log("requestAccepted: " + id))
+    sessionParser(req.httpRequest, {}, function(){
+        if(req.httpRequest.session.user){
+            id = req.httpRequest.session.user;
+            req.accept(null, req.origin);
+        }
+        
+    });
+}
+
 module.exports = {
-  handleConnection: handleConnection
+  handleConnection: handleConnection,
+  handleRequest: handleRequest
 }
