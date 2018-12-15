@@ -76,7 +76,7 @@ function handleConnection(ws) {
 
     ws.on("message", function(msg){
         console.log("we got a message with: " + msg.utf8Data);
-        data = JSON.parse(msg.utf8Data);
+        var data = JSON.parse(msg.utf8Data);
         if(player.opponent){
             console.log("player.state: " + player.state);
             if(player.state == "setup"){
@@ -84,7 +84,7 @@ function handleConnection(ws) {
                 // TODO: varify valid ships
                 try{
                     data.ships.foreach((ship)=>{
-                        board.addShip(ship.pos, ship.length, ship.vert, {})
+                        player.board.addShip(ship.pos, ship.length, ship.vert, {})
                     });
                 }catch(x){
                     ws.send(JSON.stringify({action:"error", msg:"invalid ship placement"}));

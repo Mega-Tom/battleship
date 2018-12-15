@@ -143,6 +143,9 @@ $(function(){
         			}
         		}
         	}
+        	else if(data.action === "error"){
+        		alert(data.msg);
+        	}
         }
 
     })
