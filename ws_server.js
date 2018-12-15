@@ -28,6 +28,7 @@ Player.prototype.setOpponent = function(opp){
     }));
 }
 Player.prototype.startGame = function(){
+    console.log("startGame called");
     this.opponent.state = this.state = "playing";
     this.ws.send(JSON.stringify({action:"start"}));
     this.opponent.ws.send(JSON.stringify({action:"start"}));
