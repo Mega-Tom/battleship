@@ -65,6 +65,10 @@ function displayBoard(board){
 		board.table.append(row);
 		for(var j = 0; j < 10; j++){
 			var cell = $("<td>").data({x: j, y: i});
+			if(board.grid[i][j].ship)
+			{
+				cell.addClass("ship");
+			}
 			if(board.grid[i][j].hit)
 			{
 				cell.addClass("hit");
@@ -98,7 +102,7 @@ $(function(){
 	        		}
 		        });
 
-		        $("<button>").appendTo($("#main")).click(function(){
+		        $("<button>").text("submit").appendTo($("#main")).click(function(){
 		        	ws.send(JSON.stringify({ships: sBoard.ships}))
 		        })
         	}

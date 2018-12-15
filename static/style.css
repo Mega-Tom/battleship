@@ -29,5 +29,11 @@ table.board td{
 }
 
 table.board td.hit {
+    background: white;
+}
+table.board td.ship {
+    background: gray;
+}
+table.board td.ship.hit {
     background: red;
 }
