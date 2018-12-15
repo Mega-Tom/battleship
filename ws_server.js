@@ -109,6 +109,8 @@ function handleRequest(req){
         if(req.httpRequest.session.user){
             id = req.httpRequest.session.user;
             req.accept(null, req.origin);
+        }else{
+            req.reject(403, "you are not logged in");
         }
         
     });
