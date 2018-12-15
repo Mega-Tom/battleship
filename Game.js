@@ -50,8 +50,8 @@ Board.prototype.canAddShip = function (pos, len, vert) {
     {
         var x = vert ? pos.x : pos.x + i;
         var y = vert ? pos.y + i : pos.y;
-        if(x < 1 || y < 1 || x > GRID_SIZE || y > GRID_SIZE) return false;
-        if(this.grid[y][x]) return false;
+        if(x < 0 || y < 0 || x >= GRID_SIZE || y >= GRID_SIZE) return false;
+        if(this.grid[y][x].ship) return false;
     }
     return true;
 }
