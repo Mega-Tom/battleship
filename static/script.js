@@ -59,7 +59,7 @@ function PegBoard(){
 
 function displayBoard(board){
 	//	$("#game").html(board.html());
-	board.table = board.table || $("<table>").class("board").appendTo($("#game"));
+	board.table = board.table || $("<table>").addClass("board").appendTo($("#game"));
 	for(var i = 0; i < 10; i++){
 		var row = $("<tr>");
 		table.append(row);
