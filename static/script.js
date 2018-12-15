@@ -59,22 +59,40 @@ function PegBoard(){
 
 function displayBoard(board){
 	//	$("#game").html(board.html());
-	board.table = board.table || $("<table>").addClass("board").appendTo($("#game"));
-	for(var i = 0; i < 10; i++){
-		var row = $("<tr>");
-		board.table.append(row);
-		for(var j = 0; j < 10; j++){
-			var cell = $("<td>").data({x: j, y: i});
-			if(board.grid[i][j].ship)
-			{
-				cell.addClass("ship");
+	if(board.table){
+		for(var i = 0; i < 10; i++){
+			for(var j = 0; j < 10; j++){
+				cell = $($(board.table.children()[i]).children()[j])
+				if(board.grid[i][j].ship)
+				{
+					cell.addClass("ship");
+				}
+				if(board.grid[i][j].hit)
+				{
+					cell.addClass("hit");
+				}
 			}
-			if(board.grid[i][j].hit)
-			{
-				cell.addClass("hit");
-			}
-			row.append(cell);
 		}
+
+	}else{
+		board.table = $("<table>").addClass("board").appendTo($("#game"));
+		for(var i = 0; i < 10; i++){
+			var row = $("<tr>");
+			board.table.append(row);
+			for(var j = 0; j < 10; j++){
+				var cell = $("<td>").data({x: j, y: i});
+				if(board.grid[i][j].ship)
+				{
+					cell.addClass("ship");
+				}
+				if(board.grid[i][j].hit)
+				{
+					cell.addClass("hit");
+				}
+				row.append(cell);
+			}
+		}
+
 	}
 }
 
