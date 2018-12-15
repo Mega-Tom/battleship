@@ -32,15 +32,15 @@ Player.prototype.startGame = function(){
     this.opponent.state = this.state = "playing";
     this.ws.send(JSON.stringify({action:"start"}));
     this.opponent.ws.send(JSON.stringify({action:"start"}));
-    this.interval = setInterval(function(){
-        if(player.opponent.shot)
-            player.board.hit(player.opponent.shot);
-        if(player.shot)
-            player.opponent.board.hit(player.shot);
-        player.shot = player.opponent.shot = null;
+    this.interval = setInterval(()=>{
+        if(this.opponent.shot)
+            this.board.hit(this.opponent.shot);
+        if(this.shot)
+            this.opponent.board.hit(this.shot);
+        this.shot = this.opponent.shot = null;
 
-        player.update();
-        polayer.opponent.update();
+        this.update();
+        this.opponent.update();
     }, 5000)
 }
 Player.prototype.update = function(){
