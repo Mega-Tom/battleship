@@ -62,7 +62,7 @@ function displayBoard(board){
 	board.table = board.table || $("<table>").addClass("board").appendTo($("#game"));
 	for(var i = 0; i < 10; i++){
 		var row = $("<tr>");
-		table.append(row);
+		board.table.append(row);
 		for(var j = 0; j < 10; j++){
 			var cell = $("<td>").data({x: j, y: i});
 			if(board.grid[i][j].hit)
