@@ -54,7 +54,7 @@ ShipBoard.prototype.html = function(){
 }
 
 function PegBoard(){
-	this.grid = Array.from(Array(10), () => new Array(10, {hit:false}));
+	this.grid = Array.from(Array(GRID_SIZE), () => Array.from(Array(GRID_SIZE), () => ({hit: false})))
 }
 
 function displayBoard(board){
