@@ -25,9 +25,11 @@ Player.prototype.startGame = function(){
     this.opponent.state = this.state = "playing";
     this.ws.send(JSON.stringify({action:"start"}));
     this.opponent.ws.send(JSON.stringify({action:"start"}));
-    var interval = setInterval(function(){
-        player.board.hit(player.opponent.shot);
-        player.opponent.board.hit(player.shot);
+    this.interval = setInterval(function(){
+        if(player.opponent.shot)
+            player.board.hit(player.opponent.shot);
+        if(player.shot)
+            player.opponent.board.hit(player.shot);
         player.shot = player.opponent.shot = null;
         player.update();
         polayer.opponent.update();
@@ -36,7 +38,6 @@ Player.prototype.startGame = function(){
 Player.prototype.update = function(){
     this.ws.send(JSON.stringify({
         action: "move",
-        yourShips: this.board.grid,
         shotsAtYou: this.board.shots,
         shotsAtThem: this.opponent.board.shots
     }))

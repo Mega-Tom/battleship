@@ -54,11 +54,24 @@ ShipBoard.prototype.html = function(){
 }
 
 function PegBoard(){
-	this.grid = Array.from(Array(10), () => new Array(10, false));
+	this.grid = Array.from(Array(10), () => new Array(10, {hit:false}));
 }
 
 function displayBoard(board){
-	$("#game").html(board.html());
+	//	$("#game").html(board.html());
+	board.table = board.table || $("<table>").class("board").appendTo($("#game"));
+	for(var i = 0; i < 10; i++){
+		var row = $("<tr>");
+		table.append(row);
+		for(var j = 0; j < 10; j++){
+			var cell = $("<td>").data({x: j, y: i});
+			if(board.grid[i][j].hit)
+			{
+				cell.addClass("hit");
+			}
+			row.append(cell);
+		}
+	}
 }
 
 $(function(){
@@ -73,23 +86,43 @@ $(function(){
         		oponent = data.oponent;
         		sBoard = new ShipBoard();
         		displayBoard(sBoard);
+        		$("#findgame").remove();
 
+		        sBoard.table.find("td").click(function(){
+		        	if(sBoard.canAddShip($(this).data(), 3, false))
+	        		{
+	        			sBoard.addShip($(this).data(), 3, false);
+	        			displayBoard(sBoard);
+	        		}else{
+	        			alert("invalid ship location!");
+	        		}
+		        });
+
+		        $("<button>").appendTo($("#main")).click(function(){
+		        	ws.send(JSON.stringify({ships: sBoard.ships}))
+		        })
         	}
         	else if(data.action === "start"){
-        		var table = $("<table>").class("board").appendTo($("#game"));
-        		for(var i = 0; i < 10; i++){
-        			var row = $("<tr>");
-        			table.append(row);
-        			for(var j = 0; j < 10; j++){
-        				row.append($("<td>").id("cell" + i + "-" + j));
+        		pBoard = new PegBoard();
+        		displayBoard(pBoard);
+        		
+
+		        pBoard.table.find("td").click(function(){
+		        	ws.send($(this).data());
+		        });
+        	}
+        	else if(data.action === "move"){
+				for(var i = 0; i < 10; i++){ 
+					for(var j = 0; j < 10; j++){
+        				pBoard.data[i][j].hit = data.shotsAtThem;
+        				sBoard.data[i][j].hit = data.shotsAtUs;
+		        		displayBoard(pBoard);
+		        		displayBoard(sBoard);
         			}
         		}
-        		
-        		
-        		
         	}
-        	else if(data.action === "move"){}
         }
+
     })
 })
 
