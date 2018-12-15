@@ -12,7 +12,7 @@ Coordinate.prototype.valueOf = function(){
 
 function ShipBoard(){
 	this.grid = Array.from(Array(GRID_SIZE), () => Array.from(Array(GRID_SIZE), () => ({ship: false, hit: false})))
-	ships = [];
+	this.ships = [];
 } 
 ShipBoard.prototype.addShip = function (pos, len, vert) {
     var coordinates = [];
